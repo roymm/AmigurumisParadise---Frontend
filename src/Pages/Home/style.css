@@ -1,0 +1,132 @@
+.slider{
+    position:relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right:25%;
+}
+
+.image{
+    margin-top: 30%;
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+    right:20%;
+}
+
+.imagenProducto{
+    width: 200px;
+    height: 170px;
+    border-radius: 100px;
+    margin-top:30%;
+    top:50%;
+}
+
+.right-arrow{
+    position: absolute;
+    top: 60%;
+    right: -10%;
+    font-size: 3rem;
+    color:#E759C4;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+}
+
+
+.left-arrow{
+    position: absolute;
+    top: 60%;
+    left: -10%;
+    right: 32px;
+    font-size: 3rem;
+    color:#E759C4;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10; 
+}
+
+.slide{
+    opacity: 0;
+    transition-duration: 1s ease;
+
+}
+
+.slide.active{
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}
+
+.home{
+    background-color: #FFF5F4;
+}
+
+.columna{
+    float:left;
+    width:33.33%;
+    padding:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.columnaHeader{
+    float:left;
+    width:50%;
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.busqueda{
+    float:left;
+    width:30%;
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    margin-left:150%;
+}
+
+
+
+.fila::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+
+.filaSearch{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.textoPrecio{
+    font-size: large;
+    color:#E759C4;
+    margin-left:37%;
+}
+
+.boton{
+    margin-left:15%;
+    background-color: #E759C4;
+    color:white;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    font: 400 11px;
+    padding: 1px 7px 2px;
+}
+
+.cajaBusqueda{
+    border-radius:10px;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}

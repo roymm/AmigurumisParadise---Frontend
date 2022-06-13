@@ -1,6 +1,7 @@
 import Logo from "../../Components/Logo";
 import Header from "../../Components/Header";
 import Carousel from "../../Components/Carousel";
+import Footer from "../../Components/Footer";
 import './style.css';
 import cheetah from "../../ProductImages/cheetah.jpeg";
 import donkey from "../../ProductImages/donkey.jpeg";
@@ -70,6 +71,9 @@ export const products=[
 ]
 function Home(){
     return(
+
+
+        
     <div className='home'>
             
         <div className="columnaHeader">
@@ -109,8 +113,12 @@ function Home(){
       
     
     </section>
+
+    <Footer/>
       
     </div>
+
+    
 
     );
 

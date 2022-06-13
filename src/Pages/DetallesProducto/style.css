@@ -1,0 +1,91 @@
+.detallesProducto{
+    background-color:#FFF5F4;
+  
+    
+}
+
+.textoTitulo{
+    color:#E759C4;
+    font-size:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:-10%;
+}
+
+.logo{
+    width:20%;
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenDetallesProducto{
+    width:15%;
+    height:20%;
+    border-radius:100px;
+    margin-top:10%;
+    margin-left:3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.descripcion{
+    font-size: 20px;
+    font-style: oblique;
+    padding-left:3%;
+    margin-top:2%;
+    text-align: justify;
+    padding-right:3%;
+}
+
+.tituloProducto{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:50%;
+    margin-top:-15%;
+}
+
+.categoria{
+    background-color:#CFC8CD;
+    border-radius:100px;
+    padding:10px 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:72%;
+    margin-top:0%;
+}
+
+.estrellas{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:51%;
+    margin-top:1%;
+}
+
+.agregarACarrito{
+    background-color:#E759C4;
+    color:white;
+    border-radius:30px;
+    padding:10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:71%;
+    margin-top:1%;
+}
+
+.precio{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:52%;
+    margin-top:1%;
+}
+

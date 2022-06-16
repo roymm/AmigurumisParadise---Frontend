@@ -36,18 +36,19 @@ function Carousel(){
 
 return(
     //carousel
-    <section className="slider">
-        <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide}/>
-        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide}/>
+    <section className="position-relative height-80 flex justify-center items-center">
+        <FaArrowAltCircleLeft className="text-rose-500 w-24 h-24 ml-20" onClick={prevSlide}/>
     {imagenes.map((slide,index)=>{
         return(
             <div className={index===current ? 'slide active' : 'slide'} key={index}>
-                {index===current && (<img src={slide.image} alt="imagen" className='image'/>)}
+                {index===current && (<img src={slide.image} alt="imagen" className='w-5/6 h-2/5 ml-20 rounded-md'/>)}
             </div>
         ) 
         
         
     })}
+    
+    <FaArrowAltCircleRight className="text-rose-500 w-24 h-24 mr-40" onClick={nextSlide}/>
     </section>
 
 );

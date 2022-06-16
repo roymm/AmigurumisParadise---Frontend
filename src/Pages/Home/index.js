@@ -1,5 +1,6 @@
 import Logo from "../../Components/Logo";
 import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 import Carousel from "../../Components/Carousel";
 import cheetah from "../../ProductImages/cheetah.jpeg";
 import donkey from "../../ProductImages/donkey.jpeg";
@@ -114,6 +115,10 @@ function Home(){
        
   })}
     
+  </div>
+
+  <div className="text-rose-500 pt-60 text-center">
+    <Footer/>
   </div>
 
       

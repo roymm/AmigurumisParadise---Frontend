@@ -11,7 +11,6 @@ import Facturacion from "../Facturacion";
 import FormaPago from "../FormaPago";
 import Agradecimiento from "../Agradecimiento";
 
-
 function App() {
  
   return (

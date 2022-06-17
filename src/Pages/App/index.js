@@ -26,7 +26,6 @@ function App() {
              <Route path="/pago" element={<FormaPago/>}/>
           <Route path="/agradecimiento" element={<Agradecimiento/>}/>
 
-
         </Routes>
       </BrowserRouter>
   );

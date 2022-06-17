@@ -23,7 +23,9 @@ function App() {
            <Route path="/carrito" element={<Carrito/>}/>
            <Route path="/facturacion" element={<Facturacion/>}/>
            <Route path="/pago" element={<FormaPago/>}/>
+
            <Route path="/agradecimiento" element={<Agradecimiento/>}/>
+
         </Routes>
       </BrowserRouter>
   );

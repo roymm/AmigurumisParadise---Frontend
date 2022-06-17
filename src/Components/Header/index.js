@@ -5,15 +5,15 @@ function Header(){
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     
-    <div className="busqueda">
+    <div className="pl-10 pt-20">
         
         
-        <input placeholder="Buscar" className="cajaBusqueda"></input>
-        <span class="material-symbols-outlined">search</span>
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <button className="boton">Ingresar</button>
+        <input placeholder="Buscar" className="rounded-md"></input>
+        <span class="material-symbols-outlined cursor-pointer ml-2">search</span>
+        <span class="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
+        <button className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
         
-        <button className="boton">Registrarse</button>
+        <button className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Registrarse</button>
         </div>
         
     

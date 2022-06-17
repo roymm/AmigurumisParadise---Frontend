@@ -7,6 +7,10 @@ import Login from "../Login";
 import Registro from "../Register";
 import DetailsProduct from "../DetailsProduct";
 import Carrito from "../Carrito";
+import Facturacion from "../Facturacion";
+import FormaPago from "../FormaPago";
+import Agradecimiento from "../Agradecimiento";
+
 
 function App() {
  
@@ -18,6 +22,9 @@ function App() {
            <Route path="/registro" element={<Registro/>}/>
            <Route path="/detalles" element={<DetailsProduct/>}/>
            <Route path="/carrito" element={<Carrito/>}/>
+           <Route path="/facturacion" element={<Facturacion/>}/>
+             <Route path="/pago" element={<FormaPago/>}/>
+          <Route path="/agradecimiento" element={<Agradecimiento/>}/>
 
         </Routes>
       </BrowserRouter>

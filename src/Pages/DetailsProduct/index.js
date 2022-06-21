@@ -1,11 +1,21 @@
 import Logo from "../../Components/Logo";
 import lion from "../../ProductImages/lion.jpeg";
 import Footer from "../../Components/Footer"
+import {useNavigate} from 'react-router-dom';
+
 function DetailsProduct(){
+    const navigate=useNavigate();
+
+    const navigateBack=()=>{
+        navigate('/home');
+    }
     return(
         
         <div className="bg-rose-100/40">
             <div className="flex justify-start pl-10">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            <span onClick={navigateBack} class=" text-rose-600 cursor-pointer material-symbols-outlined">arrow_back</span>
+
             <Logo/>
 
             <div className="text-rose-500 text-justify pl-80 text-3xl pt-20">

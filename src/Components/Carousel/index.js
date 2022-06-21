@@ -37,7 +37,7 @@ function Carousel(){
 return(
     //carousel
     <section className="position-relative height-80 flex justify-center items-center">
-        <FaArrowAltCircleLeft className="text-rose-500 w-24 h-24 ml-20" onClick={prevSlide}/>
+        <FaArrowAltCircleLeft className="text-rose-500 w-24 h-24 ml-20 cursor-pointer" onClick={prevSlide}/>
     {imagenes.map((slide,index)=>{
         return(
             <div className={index===current ? 'slide active' : 'slide'} key={index}>
@@ -48,7 +48,7 @@ return(
         
     })}
     
-    <FaArrowAltCircleRight className="text-rose-500 w-24 h-24 mr-40" onClick={nextSlide}/>
+    <FaArrowAltCircleRight className="text-rose-500 w-24 h-24 mr-40 cursor-pointer" onClick={nextSlide}/>
     </section>
 
 );

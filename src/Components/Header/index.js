@@ -1,4 +1,21 @@
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
 function Header(){
+
+    const navigate=useNavigate();
+
+    const navigateLogIn=()=>{
+        navigate('/logIn');
+    }
+
+    const navigateRegistro=()=>{
+        navigate('/registro');
+    }
+
+    const navigateCarrito=()=>{
+        navigate('/carrito');
+    }
+
 
     return(
     <>
@@ -10,10 +27,10 @@ function Header(){
         
         <input placeholder="Buscar" className="rounded-md"></input>
         <span class="material-symbols-outlined cursor-pointer ml-2">search</span>
-        <span class="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
-        <button className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
+        <span onClick={navigateCarrito} class="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
+        <button onClick={navigateLogIn} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
         
-        <button className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Registrarse</button>
+        <button onClick={navigateRegistro} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Registrarse</button>
         </div>
         
     

@@ -1,4 +1,5 @@
 import Logo from "../../Components/Logo";
+import Footer from "../../Components/Footer";
 import {useNavigate} from 'react-router-dom';
 
 function LogIn() {
@@ -55,6 +56,10 @@ function LogIn() {
                     </div>
                 </div>
             </div>
+
+  <div className="text-rose-500 pt-20 text-center">
+    <Footer/>
+  </div>
         </div>
 
     )

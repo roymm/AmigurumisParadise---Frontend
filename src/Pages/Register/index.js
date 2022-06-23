@@ -1,4 +1,6 @@
+import { ListItemSecondaryAction } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import Footer from "../../Components/Footer";
 
 function Register() {
     const navigate=useNavigate();
@@ -24,9 +26,9 @@ function Register() {
                     </div>
                     <div className="px-4 pb-8 bg-white rounded-tr-4xl">
                         <div className="mt-8">
-                            <form action="" className="space-y-2">
+                            <form method="POST" action="/registerUser" className="space-y-2">
                                 <div>
-                                    <input type="email" className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                    <input type="email" name="email" className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Correo"/>
                                 </div>
                                 <div>
@@ -44,9 +46,14 @@ function Register() {
                                         className="w-full mt-4 py-2 px-4 bg-rose-500 hover:bg-rose-400 text-white font-semibold rounded-md text-white text-sm">Ingresar</button>
                                 </div>
                             </form>
+
+                            
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="text-rose-500 pt-20 text-center">
+            <Footer/>
             </div>
         </div>
     )

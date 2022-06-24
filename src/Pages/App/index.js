@@ -10,7 +10,8 @@ import Carrito from "../Carrito";
 import Facturacion from "../Facturacion";
 import FormaPago from "../FormaPago";
 import Agradecimiento from "../Agradecimiento";
-
+import AgregarProducto from "../AgregarProducto";
+import DragAndDrop from "../../Components/DragAndDrop";
 function App() {
  
   return (
@@ -24,6 +25,7 @@ function App() {
            <Route path="/facturacion" element={<Facturacion/>}/>
              <Route path="/pago" element={<FormaPago/>}/>
           <Route path="/agradecimiento" element={<Agradecimiento/>}/>
+          <Route path="/agregarProducto" element={<AgregarProducto/>}/>
 
         </Routes>
       </BrowserRouter>

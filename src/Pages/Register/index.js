@@ -1,6 +1,7 @@
-import { ListItemSecondaryAction } from '@mui/material';
+
 import {useNavigate} from 'react-router-dom';
 import Footer from "../../Components/Footer";
+import Logo from "../../Components/Logo";
 
 function Register() {
     const navigate=useNavigate();
@@ -12,10 +13,10 @@ function Register() {
 
 
         <div className="min-h-screen bg-rose-100/40">
-            <div className="">
+            <div className="flex justify-start pl-10">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <span onClick={navigateBack} class="flex justify-start items-start pl-10 mt-10 text-rose-600 cursor-pointer material-symbols-outlined">arrow_back</span>
-
+            <Logo/>
             </div>
          
             <div className="p-8 flex-1">

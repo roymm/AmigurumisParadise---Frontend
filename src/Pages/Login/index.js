@@ -1,21 +1,13 @@
 import Logo from "../../Components/Logo";
 import Footer from "../../Components/Footer";
-import {useNavigate} from 'react-router-dom';
 
 function LogIn() {
-    const navigate=useNavigate();
-
-    const navigateBack=()=>{
-        navigate('/home');
-    }
-
     return (
-        <div className="selection:bg-rose-500 selection:text-white bg-rose-100/40">
+        <div>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <span onClick={navigateBack} class="pl-10 mt-10 text-rose-600 cursor-pointer material-symbols-outlined">arrow_back</span>
             <div className="min-h-screen flex justify-center items-center">
                 <div className="p-8 flex-1">
-                    <div className="w-80 bg-white rounded-3xl mx-auto overflow-hidden shadow-xl">
+                    <div className="w-80 bg-white mx-auto overflow-hidden shadow-xl">
                         <div className="relative h-48 bg-rose-500 rounded-bl-4xl">
                             <svg className="absolute bottom-0" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 1440 320">

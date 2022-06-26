@@ -1,12 +1,13 @@
 import {useNavigate} from 'react-router-dom';
+import { useState } from "react";
+
+import Modal from "../Modal";
+import Login from "../../Pages/Login";
 
 function Header(){
+    const [showLogin, setShowLogin] = useState(false);
 
     const navigate=useNavigate();
-
-    const navigateLogIn=()=>{
-        navigate('/logIn');
-    }
 
     const navigateRegistro=()=>{
         navigate('/registro');
@@ -19,21 +20,26 @@ function Header(){
 
     return(
     <>
-    
+        {showLogin && (
+            <Modal onClose={() => {setShowLogin(false);}}>
+                <Login></Login>
+            </Modal>
+        )}
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
+
     <div className="pl-10 pt-20">
-        
-        
+
+
         <input placeholder="Buscar" className="rounded-md"></input>
-        <span class="material-symbols-outlined cursor-pointer ml-2">search</span>
-        <span onClick={navigateCarrito} class="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
-        <button onClick={navigateLogIn} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
-        
+        <span className="material-symbols-outlined cursor-pointer ml-2">search</span>
+        <span onClick={navigateCarrito} className="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
+        <button onClick={() => {setShowLogin(true);}} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
+
         <button onClick={navigateRegistro} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Registrarse</button>
         </div>
-        
-    
+
+
 
     </>
     );

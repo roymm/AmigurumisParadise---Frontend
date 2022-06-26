@@ -68,6 +68,24 @@ export const products=[
 }
 ]
 
+async function getAllProducts(){
+    try{
+        const products = await fetch("http://localhost:8500/api/products/", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+            },
+        });
+
+        console.log(await products.json());
+        return products;
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+}
+
 function Home(){
     return(
         <div className="bg-rose-100/40">
@@ -78,7 +96,6 @@ function Home(){
                 </div>
             </div>
 
-
             <div className="flex justify-start pl-10 pt-20">
             <Carousel/>
 
@@ -86,7 +103,7 @@ function Home(){
 
 
       
-    
+            <button onClick={getAllProducts}>Imprimir productos</button>
             <div className="grid grid-cols-3 pl-40 pt-20">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       {products.map((slide,index)=>{

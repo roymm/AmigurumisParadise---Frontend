@@ -3,82 +3,24 @@ import Logo from "../../Components/Logo";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Carousel from "../../Components/Carousel";
-import cheetah from "../../ProductImages/cheetah.jpeg";
-import donkey from "../../ProductImages/donkey.jpeg";
-import mulan from "../../ProductImages/mulan.jpeg";
-import panda from "../../ProductImages/panda.jpeg";
-import platypus from "../../ProductImages/platypus.jpeg";
-import turtle from "../../ProductImages/turtle.jpeg";
-import pokemon from "../../ProductImages/pokemones.jpeg";
-import stitch from "../../ProductImages/stitch.jpeg";
-import lion from "../../ProductImages/lion.jpeg";
 import {getAllProducts} from "../../Slices/productSlice";
 import {useDispatch, useSelector} from "react-redux";
 
-
-/*export let products = [
-    {
-        id: 1,
-        name: "Burro",
-        image: donkey,
-        price: "12.000"
-    }, {
-        id: 2,
-        name: "Cheetah",
-        image: cheetah,
-        price: "12.000"
-    },
-    {
-        id: 3,
-        name: "Princesa Mulan",
-        image: mulan,
-        price: "12.000"
-    },
-    {
-        id: 4,
-        name: "Panda",
-        image: panda,
-        price: "12.000"
-    },
-    {
-        id: 5,
-        name: "Ornitorrinco",
-        image: platypus,
-        price: "14.000"
-    },
-    {
-        id: 6,
-        name: "Tortuga",
-        image: turtle,
-        price: "12.000"
-    },
-    {
-        id: 7,
-        name: "Pokemones",
-        image: pokemon,
-        price: "18.000"
-    },
-    {
-        id: 8,
-        name: "Stitch",
-        image: stitch,
-        price: "8.000"
-    },
-    {
-        id: 9,
-        name: "León",
-        image: lion,
-        price: "16.000"
-    }
-]*/
-
 function Home() {
-    const [products, setProducts] = useState([]);
-    /*const products = useSelector(
+    /*PARA PRUEBA CON DISPATCH Y SLICES
+    const products = useSelector(
         (state) => state.product.products
-    );*/
+    );
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllProducts());
+    }, [dispatch]);*/
+
+    /*PARA PRUEBA CON USESTATE*/
+
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         const fetchResource = async () => {
             const response = await fetch("/api/products/");

@@ -26,8 +26,8 @@ function Header(){
         
         
         <input placeholder="Buscar" className="rounded-md"></input>
-        <span class="material-symbols-outlined cursor-pointer ml-2">search</span>
-        <span onClick={navigateCarrito} class="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
+        <span className="material-symbols-outlined cursor-pointer ml-2">search</span>
+        <span onClick={navigateCarrito} className="material-symbols-outlined cursor-pointer ml-5">shopping_cart</span>
         <button onClick={navigateLogIn} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Ingresar</button>
         
         <button onClick={navigateRegistro} className="bg-rose-500 ml-5 py-2 px-2 text-white rounded-md cursor-pointer">Registrarse</button>

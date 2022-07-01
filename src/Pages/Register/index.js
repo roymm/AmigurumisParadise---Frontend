@@ -1,24 +1,9 @@
-import {useNavigate} from 'react-router-dom';
-import Footer from "../../Components/Footer";
-
 function Register() {
-    const navigate=useNavigate();
-    const navigateBack=()=>{
-        navigate('/home');
-    }
 
     return (
 
-
-        <div className="min-h-screen bg-rose-100/40">
-            <div className="">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <span onClick={navigateBack} class="flex justify-start items-start pl-10 mt-10 text-rose-600 cursor-pointer material-symbols-outlined">arrow_back</span>
-
-            </div>
-         
-            <div className="p-8 flex-1">
-                <div className="w-80 pt-6 bg-white rounded-3xl mx-auto overflow-hidden shadow-xl">
+        <div className="min-h-80 flex justify-center items-center">
+                <div className="w-80 pt-6 bg-white mx-auto overflow-hidden shadow-xl">
                     <div className="max-w-md w-full mx-auto">
                         <div className="text-center font-bold font-medium text-3xl">Crear una cuenta</div>
                         <div className="text-center font-medium text-xl">¡Registrarse es muy fácil!</div>
@@ -51,10 +36,6 @@ function Register() {
                     </div>
                 </div>
             </div>
-            <div className="text-rose-500 pt-20 text-center">
-            <Footer/>
-            </div>
-        </div>
     )
 }
 

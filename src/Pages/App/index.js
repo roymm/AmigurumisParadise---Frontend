@@ -10,6 +10,9 @@ import Carrito from "../Carrito";
 import Facturacion from "../Facturacion";
 import FormaPago from "../FormaPago";
 import Agradecimiento from "../Agradecimiento";
+import AgregarProducto from "../AgregarProducto";
+import ProductoAgregado from "../ProductoAgregado";
+import ErrorProducto from "../ErrorProducto";
 
 function App() {
  
@@ -17,13 +20,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
-           <Route path="/login" element={<Login/>}/>
-           <Route path="/registro" element={<Registro/>}/>
-           <Route path="/detalles" element={<DetailsProduct/>}/>
-           <Route path="/carrito" element={<Carrito/>}/>
-           <Route path="/facturacion" element={<Facturacion/>}/>
-             <Route path="/pago" element={<FormaPago/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/registro" element={<Registro/>}/>
+          <Route path="/detalles" element={<DetailsProduct/>}/>
+          <Route path="/carrito" element={<Carrito/>}/>
+          <Route path="/facturacion" element={<Facturacion/>}/>
+          <Route path="/pago" element={<FormaPago/>}/>
           <Route path="/agradecimiento" element={<Agradecimiento/>}/>
+          <Route path="/agregarProducto" element={<AgregarProducto/>}/>
+          <Route path="/productoAgregado" element={<ProductoAgregado/>}/>
+          <Route path="/errorProducto" element={<ErrorProducto/>}/>
 
         </Routes>
       </BrowserRouter>

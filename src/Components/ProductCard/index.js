@@ -8,16 +8,21 @@ const ProductCard = ({productData}) => {
 
             </img>
         </div>
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4">
             <div>
-                <h3 className="text-lg text-gray-700">
+                <h3 className="text-lg text-gray-900">
                     <a href="#">
                         <span aria-hidden="true" className="absolute inset-0"></span>
                         {productData.name}
                     </a>
                 </h3>
             </div>
-            <p className="text-lg font-medium text-gray-900">${productData.price}</p>
+            <span className="star">&#9733;</span>
+            <span className="star">&#9733;</span>
+            <span className="star">&#9733;</span>
+            <span className="star">&#9733;</span>
+            <span className="star">&#9733;</span>
+            <p className="text-lg font-medium text-gray-700 font-bold">USD {productData.price}</p>
         </div>
 </>
 )

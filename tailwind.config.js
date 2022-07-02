@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        fondoTransparente: "#373a47",
+        pastelGreen: "#CDF0EA",
+        pastelPink: "#F6C6EA",
+        pastelYellow: "#FAF4B7",
+        pastelLightPink: "#F9F9F9"
       }
     },
   },

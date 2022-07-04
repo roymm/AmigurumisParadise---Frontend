@@ -1,7 +1,41 @@
 import Logo from "../../Components/Logo";
 import Footer from "../../Components/Footer";
+import {useState} from 'react';
 
 function LogIn() {
+    const [formData,setFormData]=useState({});
+
+    const handleChange=(e)=>{
+        setFormData({
+            ...formData,
+            [e.target.name]:e.target.value.trim()
+
+        });
+        console.log('value is ', e.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        try{
+            event.preventDefault();
+            const response = await fetch("http://localhost:8500/api/users/login",{
+                method:"POST",
+                headers:{
+                    'Content-type':"application/json"
+                },
+                body:JSON.stringify(formData)
+            });
+
+            if(response.status === 200){
+                console.log(re);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+        //console.log(await response.json());
+    }
+
     return (
         <div>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -25,11 +59,13 @@ function LogIn() {
                             <div className="mt-8">
                                 <form action="" className="space-y-4">
                                     <div>
-                                        <input type="email" className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                        <input type="email" name="email" onChange={handleChange} className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                                placeholder="Correo"/>
                                     </div>
                                     <div>
                                         <input type="password"
+                                               name="password"
+                                               onChange={handleChange}
                                                className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                                placeholder="Contraseña"/>
                                     </div>
@@ -39,6 +75,7 @@ function LogIn() {
                                     </div>
                                     <div>
                                         <button
+                                            onClick={handleSubmit}
                                             className="w-full py-2 px-4 bg-rose-600 hover:blue-700 rounded-md text-white text-sm">Ingresar
                                         </button>
                                     </div>

@@ -6,16 +6,24 @@ import Carousel from "../../Components/Carousel";
 import ProductCard from "../../Components/ProductCard";
 import SearchBar from "../../Components/SearchBar";
 import HeroBanner from "../../Components/HeroBanner";
+import {useSelector} from "react-redux";
 
 function Home() {
 
     const [allProducts, setAllProducts] = useState([]);
     const [products, setProducts] = useState([]);
+
+    const userIsLoggedIn = useSelector((state) => state.auth.userIsLoggedIn);
+    const { user: authUser } = useSelector(x => x.auth);
+
     useEffect(() => {
+        console.log(userIsLoggedIn);
+        console.log(authUser);
         try {
             const fetchResource = async () => {
-                const response = await fetch("/api/products/");
+                const response = await fetch("http://localhost:8500/api/products/");
                 const productsJSON = await response.json();
+                console.log(productsJSON.results);
                 setAllProducts(productsJSON.results);
                 setProducts(productsJSON.results);
             };
@@ -28,8 +36,8 @@ function Home() {
 
     const filterCards = event => {
         const value = event.target.value.toLowerCase();
-        const filteredUsers = allProducts.filter(product => (`${product.name} ${product.description}`.toLowerCase().includes(value)));
-        setProducts(filteredUsers);
+        const filteredProducts = allProducts.filter(product => (`${product.name} ${product.description}`.toLowerCase().includes(value)));
+        setProducts(filteredProducts);
     }
 
     return (

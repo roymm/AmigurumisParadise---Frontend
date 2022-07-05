@@ -1,10 +1,16 @@
+import {useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../Components/Logo";
 import Footer from "../../Components/Footer";
-import {useState} from 'react';
+import {useNavigate} from "react-router-dom";
+import { authActions } from "../../Slices/authSlice";
 
 function LogIn() {
+    const navigate = useNavigate();
     const [formData,setFormData]=useState({});
-
+    const dispatch = useDispatch();
+    const authUser = useSelector(x => x.auth.user);
+    const authError = useSelector(x => x.auth.error);
     const handleChange=(e)=>{
         setFormData({
             ...formData,
@@ -16,24 +22,16 @@ function LogIn() {
 
     const handleSubmit = async (event) => {
         try{
-            event.preventDefault();
-            const response = await fetch("http://localhost:8500/api/users/login",{
-                method:"POST",
-                headers:{
-                    'Content-type':"application/json"
-                },
-                body:JSON.stringify(formData)
-            });
-
-            if(response.status === 200){
-                console.log(re);
+            //event.preventDefault();
+            const response = dispatch(authActions.login(formData));
+            if(!response.error){
+                navigate("/home");
             }
+            console.log(await response);
         }
         catch (e) {
             console.log(e);
         }
-
-        //console.log(await response.json());
     }
 
     return (

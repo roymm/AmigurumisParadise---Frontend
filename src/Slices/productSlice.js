@@ -32,6 +32,7 @@ const productSlice = createSlice({
 
 export const getAllProducts = createAsyncThunk('/api/products/', async () => {
     console.log("Entro");
+
     try {
         const products = await fetch("http://localhost:8500/api/products/", {
             method: "GET",

@@ -7,6 +7,8 @@ import ProductCard from "../../Components/ProductCard";
 import SearchBar from "../../Components/SearchBar";
 import HeroBanner from "../../Components/HeroBanner";
 import {useSelector} from "react-redux";
+import Navbar from "../../Components/Navbar"
+import Announcement from "../../Components/Announcement";
 
 function Home() {
 
@@ -17,8 +19,6 @@ function Home() {
     const { user: authUser } = useSelector(x => x.auth);
 
     useEffect(() => {
-        console.log(userIsLoggedIn);
-        console.log(authUser);
         try {
             const fetchResource = async () => {
                 const response = await fetch("http://localhost:8500/api/products/");
@@ -41,15 +41,14 @@ function Home() {
     }
 
     return (
-        <div className="bg-pastelLightPink">
-            <div className="flex justify-start pl-10">
-                <Logo/>
-                <div className="pl-60 ml-60">
-                    <Header/>
-                </div>
-            </div>
+        <div className="bg-white">
+            <Announcement>
+                <p>
+                    ¡Amigurumis con 25% de descuento! ¡BTS! ¡BTS!
+                </p>
+            </Announcement>
 
-            <HeroBanner title="Prueba" subtitle="Prueba" src="https://cdn.knitpro.eu/brandCoverImages/TRENDZ%20BANNER%20CROCHET.jpg"/>
+            <Navbar/>
 
             <div className="flex justify-start pl-10 pt-20">
                 <Carousel/>

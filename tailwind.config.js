@@ -9,6 +9,9 @@ module.exports = {
         pastelPink: "#F6C6EA",
         pastelYellow: "#FAF4B7",
         pastelLightPink: "#F9F9F9"
+      },
+      fontFamily:{
+        'DancingScript': ['Dancing Script', 'cursive']
       }
     },
   },

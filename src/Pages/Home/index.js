@@ -9,6 +9,7 @@ import HeroBanner from "../../Components/HeroBanner";
 import {useSelector} from "react-redux";
 import Navbar from "../../Components/Navbar"
 import Announcement from "../../Components/Announcement";
+import Slider from "../../Components/Slider";
 
 function Home() {
 
@@ -50,9 +51,11 @@ function Home() {
 
             <Navbar/>
 
+            <Slider/>
+            {/*
             <div className="flex justify-start pl-10 pt-20">
                 <Carousel/>
-            </div>
+            </div>*/}
 
             <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                 <SearchBar action={filterCards}></SearchBar>

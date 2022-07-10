@@ -23,7 +23,7 @@ function Home() {
     useEffect(() => {
         try {
             const fetchResource = async () => {
-                const response = await fetch("http://localhost:8500/api/products/");
+                const response = await fetch(String(process.env.REACT_APP_API_DOMAIN)+"/api/products/");
                 const productsJSON = await response.json();
                 console.log(productsJSON.results);
                 setAllProducts(productsJSON.results);

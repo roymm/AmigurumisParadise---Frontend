@@ -37,12 +37,12 @@ function createExtraActions() {
     };
 
     function login() {
-        return createAsyncThunk('http://localhost:8500/api/users/login', async (credentials) => {
+        return createAsyncThunk("/api/products/", async (credentials) => {
             console.log(credentials);
             const email = credentials.email;
             const password = credentials.password;
 
-            const loginFetch = await fetch('http://localhost:8500/api/users/login', {
+            const loginFetch = await fetch(String(process.env.REACT_APP_API_DOMAIN)+"/api/products/", {
                 method: 'POST',
                 headers: {
                     "Content-type": "application/json",

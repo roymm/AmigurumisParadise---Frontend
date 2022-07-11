@@ -1,5 +1,5 @@
 # Redirects from what the browser requests to what we serve
-/home                 /
+/home                 https://stellular-medovik-7aa7e6.netlify.app/
 /login                /login
 /registro            /register
 /detalles            /details

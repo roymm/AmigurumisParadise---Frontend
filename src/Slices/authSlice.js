@@ -37,12 +37,10 @@ function createExtraActions() {
     };
 
     function login() {
-        return createAsyncThunk("/api/products/", async (credentials) => {
-            console.log(credentials);
+        return createAsyncThunk('http://localhost:8500/api/users/login', async (credentials) => {
             const email = credentials.email;
             const password = credentials.password;
-
-            const loginFetch = await fetch(String(process.env.REACT_APP_API_DOMAIN)+"/api/products/", {
+            const loginFetch = await fetch('http://localhost:8500/api/users/login', {
                 method: 'POST',
                 headers: {
                     "Content-type": "application/json",
@@ -77,14 +75,23 @@ function createExtraReducers() {
                 state.error = null;
             },
             [fulfilled]: (state, action) => {
-                const user = action.payload;
+                if(action.payload.error){
+                    state.userIsLoggedIn = false;
+                    state.user = null;
+                    state.error = true;
+                }
+                else{
+                    const user = action.payload;
 
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-                state.user = user;
-                state.userIsLoggedIn = true;
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('user', JSON.stringify(user));
+                    state.user = user;
+                    state.userIsLoggedIn = true;
+                }
             },
             [rejected]: (state, action) => {
+                state.userIsLoggedIn = false;
+                state.user = null;
                 state.error = action.error;
             }
         };

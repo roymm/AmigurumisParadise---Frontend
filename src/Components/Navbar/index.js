@@ -1,9 +1,25 @@
 import SearchBar from "../SearchBar";
 import {Badge, MenuItem} from "@mui/material";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import LogInSection from "./LogInSection";
+import MenuButton from "../MenuButton";
+import {authActions, authReducer} from "../../Slices/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import {useEffect} from "react";
 
 const Navbar = () => {
+    const userIsLoggedIn = useSelector((state) => state.auth.userIsLoggedIn);
+    const dispatch = useDispatch();
+
+    const handleLogOut = () => {
+        dispatch(authActions.logout());
+        toast("Cierre de sesión exitoso");
+    }
+
+    //useEffect(()=> console.log(userIsLoggedIn));
+
     return (
         <>
             <div className="h-10 md:h-14 lg:h-16 bg-pastelLightPink items-center justify-center">
@@ -18,12 +34,10 @@ const Navbar = () => {
                         <SearchBar/>
                     </div>
                     <div className="flex-2 flex items-center justify-end">
-                        <button
-                            className="p-1 ml-1 md:ml-4 lg:ml-6 cursor-pointer text-xs md:text-base hover:bg-pastelPink transition duration-300 rounded">Registrarse
-                        </button>
-                        <button
-                            className="p-1 ml-1 md:ml-4 lg:ml-6 cursor-pointer text-xs md:text-base hover:bg-pastelPink transition duration-300 rounded">Ingresar
-                        </button>
+                        {userIsLoggedIn ?
+                            <MenuButton action={handleLogOut}>Salir</MenuButton> :
+                            <LogInSection/>
+                        }
                         <button className="ml-6 ml-1 md:ml-4 lg:ml-6 cursor-pointer text-xs md:text-base">
                             <Badge badgeContent={4} color="primary">
                                 <ShoppingCartOutlinedIcon/>
@@ -32,6 +46,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </>
     )
 }

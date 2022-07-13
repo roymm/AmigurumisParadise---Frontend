@@ -11,6 +11,7 @@ import Navbar from "../../Components/Navbar"
 import Announcement from "../../Components/Announcement";
 import Slider from "../../Components/Slider";
 import CategoryList from "../../Components/CategoryList"
+import {authActions} from "../../Slices/authSlice";
 
 function Home() {
 
@@ -21,11 +22,11 @@ function Home() {
     const { user: authUser } = useSelector(x => x.auth);
 
     useEffect(() => {
+        //console.log(authUser);
         try {
             const fetchResource = async () => {
                 const response = await fetch(String(process.env.REACT_APP_API_DOMAIN)+"/api/products/");
                 const productsJSON = await response.json();
-                console.log(productsJSON.results);
                 setAllProducts(productsJSON.results);
                 setProducts(productsJSON.results);
             };

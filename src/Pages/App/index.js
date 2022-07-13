@@ -13,6 +13,7 @@ import Agradecimiento from "../Agradecimiento";
 import AgregarProducto from "../AgregarProducto";
 import ProductoAgregado from "../ProductoAgregado";
 import ErrorProducto from "../ErrorProducto";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
  

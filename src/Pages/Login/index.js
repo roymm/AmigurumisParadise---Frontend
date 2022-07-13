@@ -1,42 +1,47 @@
-import {useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import Logo from "../../Components/Logo";
 import Footer from "../../Components/Footer";
-import {useNavigate} from "react-router-dom";
-import { authActions } from "../../Slices/authSlice";
+import {Navigate, useNavigate} from "react-router-dom";
+import {authActions} from "../../Slices/authSlice";
+import {toast, ToastContainer} from "react-toastify";
 
 function LogIn() {
     const navigate = useNavigate();
-    const [formData,setFormData]=useState({});
+    const [formData, setFormData] = useState({});
     const dispatch = useDispatch();
     const authUser = useSelector(x => x.auth.user);
     const authError = useSelector(x => x.auth.error);
-    const handleChange=(e)=>{
+    const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]:e.target.value.trim()
+            [e.target.name]: e.target.value.trim()
 
         });
-        console.log('value is ', e.target.value);
     };
 
     const handleSubmit = async (event) => {
-        try{
-            //event.preventDefault();
-            const response = dispatch(authActions.login(formData));
-            if(!response.error){
+        try {
+            event.preventDefault();
+            const response = await dispatch(authActions.login(formData));
+            console.log(response);
+            if (!response.payload.error) {
                 navigate("/home");
             }
-            console.log(await response);
-        }
-        catch (e) {
+            else {
+                toast.error("Error de autenticación");
+            }
+        } catch (e) {
             console.log(e);
         }
     }
 
-    return (
+    return authUser ? (
+        <Navigate to="/"/>
+    ) : (
         <div>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            <link rel="stylesheet"
+                  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
             <div className="min-h-screen flex justify-center items-center">
                 <div className="p-8 flex-1">
                     <div className="w-80 bg-white mx-auto overflow-hidden shadow-xl">
@@ -57,7 +62,8 @@ function LogIn() {
                             <div className="mt-8">
                                 <form action="" className="space-y-4">
                                     <div>
-                                        <input type="email" name="email" onChange={handleChange} className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                        <input type="email" name="email" onChange={handleChange}
+                                               className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                                placeholder="Correo"/>
                                     </div>
                                     <div>
@@ -84,9 +90,10 @@ function LogIn() {
                 </div>
             </div>
 
-  <div className="text-rose-500 pt-20 text-center">
-    <Footer/>
-  </div>
+            <div className="text-rose-500 pt-20 text-center">
+                <Footer/>
+            </div>
+            <ToastContainer/>
         </div>
 
     )

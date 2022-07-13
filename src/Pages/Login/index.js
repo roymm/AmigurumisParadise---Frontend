@@ -1,34 +1,28 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {useForm} from "react-hook-form";
+import {Navigate, useNavigate} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
+
 import Logo from "../../Components/Logo";
 import Footer from "../../Components/Footer";
-import {Navigate, useNavigate} from "react-router-dom";
 import {authActions} from "../../Slices/authSlice";
-import {toast, ToastContainer} from "react-toastify";
+
 
 function LogIn() {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({});
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const dispatch = useDispatch();
     const authUser = useSelector(x => x.auth.user);
-    const authError = useSelector(x => x.auth.error);
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value.trim()
 
-        });
-    };
-
-    const handleSubmit = async (event) => {
+    const onSubmit = async (formData) => {
         try {
-            event.preventDefault();
-            const response = await dispatch(authActions.login(formData));
-            console.log(response);
+            const email = formData.email;
+            const password = formData.password;
+            const response = await dispatch(authActions.login({email, password}));
             if (!response.payload.error) {
                 navigate("/home");
-            }
-            else {
+            } else {
                 toast.error("Error de autenticación");
             }
         } catch (e) {
@@ -36,10 +30,7 @@ function LogIn() {
         }
     }
 
-    return authUser ? (
-        <Navigate to="/"/>
-    ) : (
-        <div>
+    return authUser ? (<Navigate to="/"/>) : (<div>
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
             <div className="min-h-screen flex justify-center items-center">
@@ -60,28 +51,38 @@ function LogIn() {
                         </div>
                         <div className="px-4 pb-8 bg-white rounded-tr-4xl">
                             <div className="mt-8">
-                                <form action="" className="space-y-4">
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                                     <div>
-                                        <input type="email" name="email" onChange={handleChange}
-                                               className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                        <input type="email" name="email"
+                                               {...register("email", {
+                                                   required: {value: true, message: "Campo requerido"},
+                                                   pattern: {value: /^\S+@\S+$/i, message: "Formato invalido"}
+                                               })}
+                                               className={`w-full p-2 border-b-2 ${errors.email ? "border-red-700" : "border-gray-300"} rounded mt-1`}
                                                placeholder="Correo"/>
+                                        {errors.email && <p className={`m-1 text-red-700`}>{errors.email.message}</p>}
                                     </div>
                                     <div>
                                         <input type="password"
                                                name="password"
-                                               onChange={handleChange}
+                                               {...register("password", {
+                                                   required: {value: true, message: "Campo requerido"},
+                                                   minLength: {value: 2, message: "Mínimo 8 caracteres"}
+                                               })}
                                                className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                                placeholder="Contraseña"/>
+                                        {errors.password &&
+                                            <p className={`m-1 text-red-700`}>{errors.password.message}</p>}
                                     </div>
                                     <div className="flex flex-col items-end">
                                         <a href="" className="font-medium text-small text-rose-500 block">¿Olvidó su
                                             contraseña?</a>
                                     </div>
                                     <div>
-                                        <button
-                                            onClick={handleSubmit}
-                                            className="w-full py-2 px-4 bg-rose-600 hover:blue-700 rounded-md text-white text-sm">Ingresar
-                                        </button>
+                                        <input
+                                            type="submit"
+                                            className="w-full py-2 px-4 bg-rose-600 hover:blue-700 rounded-md text-white text-sm"
+                                            value="Ingresar"/>
                                     </div>
                                 </form>
                             </div>

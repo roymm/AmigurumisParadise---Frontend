@@ -1,4 +1,7 @@
+import {useForm} from "react-hook-form";
+
 function Register() {
+    const {register, handleSubmit} = useForm();
 
     return (
 
@@ -12,11 +15,37 @@ function Register() {
                         <div className="mt-8">
                             <form method="POST" action="/registerUser" className="space-y-2">
                                 <div>
-                                    <input type="email" name="email" className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                    <input type="text"
+                                           name="name"
+                                           {...register("name", {
+                                               required: true, maxLength: 80
+                                           })}
+                                           className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                           placeholder="Nombre"/>
+                                </div>
+                                <div>
+                                    <input type="text"
+                                           name="last_name"
+                                           {...register("last_name", {
+                                               required: true, maxLength: 80
+                                           })}
+                                           className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
+                                           placeholder="Apellido"/>
+                                </div>
+                                <div>
+                                    <input type="email"
+                                           name="email"
+                                           {...register("email", {
+                                               required: true, pattern: /^\S+@\S+$/i
+                                           })}
+                                           className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Correo"/>
                                 </div>
                                 <div>
                                     <input type="password"
+                                           {...register("password", {
+                                               required: true, maxLength: 80
+                                           })}
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Contraseña"/>
                                 </div>

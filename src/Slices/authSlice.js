@@ -37,9 +37,7 @@ function createExtraActions() {
     };
 
     function login() {
-        return createAsyncThunk('http://localhost:8500/api/users/login', async (credentials) => {
-            const email = credentials.email;
-            const password = credentials.password;
+        return createAsyncThunk('http://localhost:8500/api/users/login', async ({email,password}) => {
             const loginFetch = await fetch('http://localhost:8500/api/users/login', {
                 method: 'POST',
                 headers: {
@@ -59,6 +57,18 @@ function createExtraActions() {
                     message: userData.error.message,
                 }
             }
+        });
+    }
+
+    function register(){
+        return createAsyncThunk('http://localhost:8500/api/users/login', async ({userInfo}) => {
+            const registerFetch = await fetch('http://localhost:8500/api/users/register', {
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({userInfo}),
+            });
         });
     }
 }

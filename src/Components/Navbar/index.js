@@ -18,7 +18,7 @@ const Navbar = () => {
         toast("Cierre de sesión exitoso");
     }
 
-    //useEffect(()=> console.log(userIsLoggedIn));
+    useEffect(()=> console.log(userIsLoggedIn));
 
     return (
         <>

@@ -1,7 +1,29 @@
 import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
+import {Navigate, useNavigate} from "react-router-dom";
+
+import {authActions} from "../../Slices/authSlice";
+import {toast} from "react-toastify";
 
 function Register() {
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onSubmit = async (formData) => {
+        try {
+            const response = await dispatch(authActions.register(formData));
+            console.log(response);
+            console.log(response.payload);
+            if (!response.payload.error) {
+                navigate("/home");
+            } else {
+                toast.error("Error al crear un nuevo usuario");
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
 
@@ -13,46 +35,55 @@ function Register() {
                     </div>
                     <div className="px-4 pb-8 bg-white rounded-tr-4xl">
                         <div className="mt-8">
-                            <form method="POST" action="/registerUser" className="space-y-2">
+                            <form method="POST" onSubmit={handleSubmit(onSubmit)} className="space-y-2">
                                 <div>
                                     <input type="text"
                                            name="name"
                                            {...register("name", {
-                                               required: true, maxLength: 80
+                                               required: {value: true, message: "Campo requerido"},
+                                               maxLength: {value: 80, message: "80 caracteres máximo"}
                                            })}
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Nombre"/>
+                                    {errors.name && <p className={`m-1 text-red-700`}>{errors.name.message}</p>}
                                 </div>
                                 <div>
                                     <input type="text"
                                            name="last_name"
                                            {...register("last_name", {
-                                               required: true, maxLength: 80
+                                               required: {value: true, message: "Campo requerido"},
+                                               maxLength: {value: 80, message: "80 caracteres máximo"}
                                            })}
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Apellido"/>
+                                    {errors.last_name && <p className={`m-1 text-red-700`}>{errors.last_name.message}</p>}
                                 </div>
                                 <div>
                                     <input type="email"
                                            name="email"
                                            {...register("email", {
-                                               required: true, pattern: /^\S+@\S+$/i
+                                               required: {value: true, message: "Campo requerido"},
+                                               pattern: {value: /^\S+@\S+$/i, message: "Formato invalido"}
                                            })}
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Correo"/>
+                                    {errors.email && <p className={`m-1 text-red-700`}>{errors.email.message}</p>}
                                 </div>
                                 <div>
                                     <input type="password"
                                            {...register("password", {
-                                               required: true, maxLength: 80
+                                               required: {value: true, message:"Campo requerido"},
+                                               minLength:{value: 8, message:"Largo de 8 míninmo"}
                                            })}
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Contraseña"/>
+                                    {errors.password && <p className={`m-1 text-red-700`}>{errors.password.message}</p>}
                                 </div>
                                 <div>
                                     <input type="password"
                                            className="w-full p-2 border-b-2 border-gray-300 rounded mt-1"
                                            placeholder="Confirmar contraseña"/>
+
                                 </div>
                                 <div>
                                     <button

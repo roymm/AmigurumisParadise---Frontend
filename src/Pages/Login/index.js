@@ -20,6 +20,7 @@ function LogIn() {
             const email = formData.email;
             const password = formData.password;
             const response = await dispatch(authActions.login({email, password}));
+            console.log(response.payload.error);
             if (!response.payload.error) {
                 navigate("/home");
             } else {

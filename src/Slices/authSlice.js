@@ -5,25 +5,25 @@ const initialState = createInitialState();
 const reducers = createReducers();
 const extraActions = createExtraActions();
 const extraReducers = createExtraReducers();
-const slice = createSlice({ name, initialState, reducers, extraReducers });
+const slice = createSlice({name, initialState, reducers, extraReducers});
 
-export const authActions = { ...slice.actions, ...extraActions };
+export const authActions = {...slice.actions, ...extraActions};
 export const authReducer = slice.reducer;
 
-function createInitialState(){
-    return{
-        userIsLoggedIn : false,
-        user : null,
+function createInitialState() {
+    return {
+        userIsLoggedIn: false,
+        user: null,
         error: null
     }
 }
 
-function createReducers(){
-    return{
+function createReducers() {
+    return {
         logout
     };
 
-    function logout(state){
+    function logout(state) {
         state.userIsLoggedIn = false;
         state.user = null;
         localStorage.removeItem('user');
@@ -33,11 +33,12 @@ function createReducers(){
 function createExtraActions() {
 
     return {
-        login: login()
+        login: login(),
+        register: register()
     };
 
     function login() {
-        return createAsyncThunk('http://localhost:8500/api/users/login', async ({email,password}) => {
+        return createAsyncThunk('http://localhost:8500/api/users/login', async ({email, password}) => {
             const loginFetch = await fetch('http://localhost:8500/api/users/login', {
                 method: 'POST',
                 headers: {
@@ -60,37 +61,48 @@ function createExtraActions() {
         });
     }
 
-    function register(){
-        return createAsyncThunk('http://localhost:8500/api/users/login', async ({userInfo}) => {
+    function register() {
+        return createAsyncThunk('http://localhost:8500/api/users/login', async (userInfo) => {
             const registerFetch = await fetch('http://localhost:8500/api/users/register', {
                 method: 'POST',
                 headers: {
                     "Content-type": "application/json",
                 },
-                body: JSON.stringify({userInfo}),
+                body: JSON.stringify(userInfo),
             });
+            console.log(registerFetch);
+            const newUser = await registerFetch.json();
+            console.log(newUser);
+            if (registerFetch.status === 201) {
+                return newUser;
+            } else {
+                return {
+                    error: true,
+                    message: newUser.error.message,
+                }
+            }
         });
     }
 }
 
 function createExtraReducers() {
     return {
-        ...login()
+        ...login(),
+        //...register()
     };
 
     function login() {
-        let { pending, fulfilled, rejected } = extraActions.login;
+        let {pending, fulfilled, rejected} = extraActions.login;
         return {
             [pending]: (state) => {
                 state.error = null;
             },
             [fulfilled]: (state, action) => {
-                if(action.payload.error){
+                if (action.payload.error) {
                     state.userIsLoggedIn = false;
                     state.user = null;
                     state.error = true;
-                }
-                else{
+                } else {
                     const user = action.payload;
 
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -106,4 +118,23 @@ function createExtraReducers() {
             }
         };
     }
+
+    /*function register() {
+        let {pending, fulfilled, rejected} = extraActions.register;
+        return {
+            [pending]: (state) => {
+                state.error = null;
+            },
+            [fulfilled]: (state, action) => {
+                if (action.payload.error) {
+                    state.error = true;
+                } else {
+                    state.error = null;
+                }
+            },
+            [rejected]: (state, action) => {
+                state.error = action.error;
+            }
+        };
+    }*/
 }

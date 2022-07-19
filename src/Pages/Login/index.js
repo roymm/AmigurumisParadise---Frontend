@@ -22,7 +22,11 @@ function LogIn() {
             const response = await dispatch(authActions.login({email, password}));
             console.log(response.payload.error);
             if (!response.payload.error) {
-                navigate("/home");
+                navigate("/home",{
+                    state: {
+                        message: "Inicio de sesión exitoso"
+                    }
+                });
             } else {
                 toast.error("Error de autenticación");
             }

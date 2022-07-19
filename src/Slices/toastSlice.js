@@ -1,31 +1,35 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const name = 'toast';
 const initialState = createInitialState();
 const reducers = createReducers();
-const extraActions = createExtraActions();
-const extraReducers = createExtraReducers();
-const slice = createSlice({name, initialState, reducers, extraReducers});
+const slice = createSlice({name, initialState, reducers});
 
-export const authActions = {...slice.actions, ...extraActions};
-export const authReducer = slice.reducer;
+export const toastActions = {...slice.actions};
+export const toastReducer = slice.reducer;
 
 function createInitialState() {
     return {
+        newMessage: false,
         message: null,
         type: null,
-        duration: 0
     }
 }
 
 function createReducers() {
     return {
-        reset
+        reset,
+        setMessage,
     };
 
     function reset(state) {
+        state.newMessage = false;
         state.message = null;
         state.type = null;
-        this.state.duration = 0;
+    }
+
+    function setMessage(state, action){
+        state.message = action.payload.message;
+        state.type = action.payload.type;
     }
 }

@@ -1,24 +1,32 @@
 import SearchBar from "../SearchBar";
-import {Badge, MenuItem} from "@mui/material";
+import {Badge} from "@mui/material";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import LogInSection from "./LogInSection";
 import MenuButton from "../MenuButton";
-import {authActions, authReducer} from "../../Slices/authSlice";
+import {authActions} from "../../Slices/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
 
 const Navbar = () => {
     const userIsLoggedIn = useSelector((state) => state.auth.userIsLoggedIn);
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const handleLogOut = () => {
         dispatch(authActions.logout());
         toast("Cierre de sesión exitoso");
     }
 
-    useEffect(()=> console.log(userIsLoggedIn));
+    useEffect(()=>{
+        if(location.state && location.state.message){
+            console.log("Me llamo");
+            toast(location.state.message);
+            window.history.replaceState({}, document.title)
+        }
+    },[])
 
     return (
         <>

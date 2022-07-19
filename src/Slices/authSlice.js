@@ -88,7 +88,6 @@ function createExtraActions() {
 function createExtraReducers() {
     return {
         ...login(),
-        //...register()
     };
 
     function login() {
@@ -118,23 +117,4 @@ function createExtraReducers() {
             }
         };
     }
-
-    /*function register() {
-        let {pending, fulfilled, rejected} = extraActions.register;
-        return {
-            [pending]: (state) => {
-                state.error = null;
-            },
-            [fulfilled]: (state, action) => {
-                if (action.payload.error) {
-                    state.error = true;
-                } else {
-                    state.error = null;
-                }
-            },
-            [rejected]: (state, action) => {
-                state.error = action.error;
-            }
-        };
-    }*/
 }

@@ -16,7 +16,7 @@ function Register() {
             console.log(response);
             console.log(response.payload);
             if (!response.payload.error) {
-                navigate("/home");
+                navigate("/inicio");
             } else {
                 toast.error("Error al crear un nuevo usuario");
             }

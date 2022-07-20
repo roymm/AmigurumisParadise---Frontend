@@ -22,7 +22,7 @@ function LogIn() {
             const response = await dispatch(authActions.login({email, password}));
             console.log(response.payload.error);
             if (!response.payload.error) {
-                navigate("/home",{
+                navigate("/inicio",{
                     state: {
                         message: "Inicio de sesión exitoso"
                     }

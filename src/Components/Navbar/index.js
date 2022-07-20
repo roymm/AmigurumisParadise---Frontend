@@ -22,7 +22,6 @@ const Navbar = () => {
 
     useEffect(()=>{
         if(location.state && location.state.message){
-            console.log("Me llamo");
             toast(location.state.message);
             window.history.replaceState({}, document.title)
         }

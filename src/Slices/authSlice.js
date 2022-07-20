@@ -70,9 +70,7 @@ function createExtraActions() {
                 },
                 body: JSON.stringify(userInfo),
             });
-            console.log(registerFetch);
             const newUser = await registerFetch.json();
-            console.log(newUser);
             if (registerFetch.status === 201) {
                 return newUser;
             } else {

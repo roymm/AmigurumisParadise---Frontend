@@ -14,7 +14,6 @@ function DetailsProduct() {
             const fetchResource = async () => {
                 const response = await fetch(String(process.env.REACT_APP_API_DOMAIN) + `/api/products/${id}`);
                 const productsJSON = await response.json();
-                console.log(productsJSON)
                 await setProduct(productsJSON.results);
             };
             fetchResource();

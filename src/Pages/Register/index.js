@@ -13,8 +13,6 @@ function Register() {
     const onSubmit = async (formData) => {
         try {
             const response = await dispatch(authActions.register(formData));
-            console.log(response);
-            console.log(response.payload);
             if (!response.payload.error) {
                 navigate("/inicio");
             } else {

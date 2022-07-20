@@ -21,17 +21,17 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/inicio" element={<Home />} />
+          <Route path="/ingresar" element={<Login/>}/>
           <Route path="/registro" element={<Registro/>}/>
-          <Route path="/detalles" element={<DetailsProduct/>}/>
+          <Route path="/producto/:id" element={<DetailsProduct/>}/>
           <Route path="/carrito" element={<Carrito/>}/>
-          <Route path="/facturacion" element={<Facturacion/>}/>
-          <Route path="/pago" element={<FormaPago/>}/>
-          <Route path="/agradecimiento" element={<Agradecimiento/>}/>
-          <Route path="/agregarProducto" element={<AgregarProducto/>}/>
-          <Route path="/productoAgregado" element={<ProductoAgregado/>}/>
-          <Route path="/errorProducto" element={<ErrorProducto/>}/>
+          <Route path="/carrito/facturacion" element={<Facturacion/>}/>
+          <Route path="carrito/pago" element={<FormaPago/>}/>
+          <Route path="carrito/agradecimiento" element={<Agradecimiento/>}/>
+          <Route path="/producto/agregar" element={<AgregarProducto/>}/>
+          <Route path="/producto/agregar/success" element={<ProductoAgregado/>}/>
+          <Route path="/producto/agregar/error" element={<ErrorProducto/>}/>
 
         </Routes>
       </BrowserRouter>

@@ -1,68 +1,67 @@
-import Logo from "../../Components/Logo";
 import lion from "../../ProductImages/lion.jpeg";
 import Footer from "../../Components/Footer"
-import {useNavigate} from 'react-router-dom';
+import Navbar from "../../Components/Navbar";
+import Announcement from "../../Components/Announcement";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
-function DetailsProduct(){
-    const navigate=useNavigate();
+function DetailsProduct() {
+    const {id} = useParams();
+    const [product, setProduct] = useState(null);
 
-    const navigateBack=()=>{
-        navigate('/home');
-    }
-    return(
-        
-        <div className="bg-rose-100/40">
-            <div className="flex justify-start pl-10">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <span onClick={navigateBack} class=" text-rose-600 cursor-pointer material-symbols-outlined">arrow_back</span>
+    useEffect(() => {
+        try {
+            const fetchResource = async () => {
+                const response = await fetch(String(process.env.REACT_APP_API_DOMAIN) + `/api/products/${id}`);
+                const productsJSON = await response.json();
+                console.log(productsJSON)
+                await setProduct(productsJSON.results);
+            };
+            fetchResource();
+        } catch (e) {
+            console.log(e);
+        }
 
-            <Logo/>
+    }, []);
 
-            <div className="text-rose-500 text-justify pl-80 text-3xl pt-20">
-                Detalle del producto
-            </div>
-            
-            
-            </div>
+    return (
 
-            <div className="flex justify-start">
-            <div className="pl-10">
-            <img src={lion} alt="imagen del producto" className="w-40 h-32 rounded-[60px] mt-20"></img>
-            <div className="pt-10 font-bold underline decoration-rose-500">Descripción</div>
-            <div className="pt-5 font-semibold">León Sebastián</div>
-            <div className="pr-20 pt-5 text-justify"> Como un guionista y un titiritero, Sebastián sabía exactamente lo que quería ser desde el primer minuto de la primera vez que vio "El cristal oscuro". No podía creer sus ojos, todo el trabajo detrás de escenas, los meses(incluso años) necesarios para crear un mundo animado tan fantástico usando solo muñecas y cuerdas. Ese mismo día empezó a construir su primer títere.</div>
-            </div>
+        <>
+            <Announcement>
+                <p>
+                    ¡Amigurumis con 25% de descuento! ¡BTS! ¡BTS!
+                </p>
+            </Announcement>
+            <Navbar/>
+            {product == null ? <p>Cargando</p>
+                :
+                <div>
+                    <div className={`p-2 md:p-12 flex flex-col md:flex-row`}>
+                        <div className={`flex-1`}>
+                            <img className={`max-w-full h-3/4 object-cover`} src={product.picture} alt={``}/>
+                        </div>
+                        <div className={`flex-1 px-2 py-4 md:px-10`}>
+                            <h1 className={`font-semibold text-4xl`}>
+                                {product.name}
+                            </h1>
+                            <p className={`my-5`}>
+                                {product.description}
+                            </p>
+                            <span className={`font-light text-4xl`}>USD {product.price}</span>
+                            <div className={`w-full`}>
+                                <button
+                                    className={`w-full p-3 mt-4 cursor-pointer text-base md:text-xl bg-pastelPink hover:bg-pink-200 transition duration-300 rounded`}
+                                    onClick={() => {
+                                    }}>Añadir al carrito
+                                </button>
+                            </div>
 
-            <div className="pl-10">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                        </div>
+                    </div>
+                </div>}
 
-            <div className="pt-10 pr-60 font-bold">León Sebastián</div>
-            <div className="pt-5 pr-60"> <button className="w-full py-2 px-4 bg-gray-300 rounded-md text-sm">Categoría</button></div>
-            <span class="material-symbols-outlined pt-3">grade</span>
-            <span class="material-symbols-outlined pt-3">grade</span>
-            <span class="material-symbols-outlined pt-3">grade</span>
-            <span class="material-symbols-outlined pt-3">grade</span>
-            <span class="material-symbols-outlined pt-3">grade</span>
-            <div className="pl-8">Precio</div>
-            <div className="pt-5 pr-60"> <button className="w-full py-2 px-2 bg-rose-500 text-white rounded-md text-sm">Añadir a carrito</button></div>
-            </div>
-            
-
-
-            
-            </div>
-
-            <div className="pl-80">
-            <div className="text-rose-500 pt-20 pl-60 text-justify">
             <Footer/>
-            </div>
-            </div>
-            
-            
-            
-            
-            
-        </div>
-    );
+        </>);
 }
+
 export default DetailsProduct;

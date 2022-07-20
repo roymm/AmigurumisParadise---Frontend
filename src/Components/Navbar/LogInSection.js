@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 const LogInSection = () => {
     const navigator = useNavigate();
-    const handleLogin = ()=> navigator('/login');
+    const handleLogin = ()=> navigator('/ingresar');
     const handleRegister = ()=> navigator('/registro');
 
 
